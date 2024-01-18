@@ -11,4 +11,6 @@ appId: `${import.meta.env.VITE_appId}`,
 measurementId: `${import.meta.env.VITE_measurementId}`,
 })
 
+export const auth = firebaseApp.authDomain
+
 export default firebaseApp;
