@@ -31,7 +31,7 @@ export default function LoginPage() {
       navigate('/')
     } catch (error) {
       console.error(error.code + "\n" + error.message)
-      alert("Error Cannot Sign in. \nPlease try again")
+      alert("Error cannot Login. \nPlease try again")
     }
   }
 
@@ -74,7 +74,7 @@ export default function LoginPage() {
             className="bg-red-600 text-slate-100 w-[100px] my-2 p-1 rounded-lg" />
         </form>
         <div className='flex flex-row'>
-          <p className='py-1'>Don&apos;t have an account</p>
+          <p className='py-1'>Don&apos;t have an account?</p>
           <button className='bg-blue-600 py-1 mx-4 w-[100px] rounded-lg text-center' onClick={LoginRoute}>Register</button></div>
       </div>
     </div>

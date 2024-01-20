@@ -1,9 +1,10 @@
 
 
 export default function UserProfile() {
-  console.log(localStorage.getItem('user'))
+  const user = JSON.parse(localStorage.getItem('user'))
   return (
     <div>
+    <h1>{user && user.email}</h1>
         userProfile
     </div>
   )
