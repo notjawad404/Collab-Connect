@@ -1,14 +1,13 @@
 
 import './App.css'
-// import LoginPage from './components/authPages/LoginPage'
-import RegisterPage from './components/authPages/Register'
+
+
+import { Outlet } from 'react-router-dom'
+
 
 function App() {
   return (
-   <>
-    <RegisterPage/>
-    {/* <LoginPage/> */}
-   </>
+    <Outlet/>
   )
 }
 
