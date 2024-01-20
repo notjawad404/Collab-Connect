@@ -1,19 +1,34 @@
-import { useRef } from 'react'
-import { useAuth } from '../context/authContext'
+import { useState, useRef } from 'react';
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { useFirebase } from '../context/authContext';
+
 
 export default function RegisterPage() {
   const emailRef = useRef(null)
-  const passRef = useRef(null)
+  const passRef = useRef(null) 
   const conpassRef = useRef(null)
-  const {registerUser} = useAuth();
 
-  console.log(registerUser);
-
+const [email, setEmail] = useState('')
+const [password, setPassword] = useState('')
+const [confirmpasswaord, setConfirmPassword] = useState('')
   
-  function handleSubmit(e){
+const auth = useFirebase().auth;
+
+
+  const handleSubmit = async(e) =>{
   
       e.preventDefault();
-  
+      try {
+
+        console.log()
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        console.log(userCredential)
+
+        // const user = userCredential.user;
+        // console.log(user)
+      } catch (error) {
+        console.error(error.code+"\n"+ error.message)
+      }
   }
 
   return (
@@ -22,14 +37,43 @@ export default function RegisterPage() {
     Register Page
     </p>
       <div className="flex justify-center items-center flex-col">
-        <form className=" flex flex-col">
+        <form onSubmit={handleSubmit} className=" flex flex-col">
+
+{/* Email */}
           <label>Email:</label>
-          <input type="email" ref={emailRef} required className=" text-slate-800 w-[300px] my-2 p-1 rounded-lg"/>
+          <input 
+          type="email" 
+          ref={emailRef} 
+          value={email} 
+          required 
+          onChange={(e)=>setEmail(e.target.value)}
+          className=" text-slate-800 w-[300px] my-2 p-1 rounded-lg"/>
+
+{/* Password */}
           <label>Password:</label>
-          <input type="password" ref={passRef} required  className=" text-slate-800 w-[300px] my-2 p-1 rounded-lg"/>
+          <input 
+          type="password" 
+          ref={passRef} 
+          value={password} 
+          required  
+          onChange={(e)=>setPassword(e.target.value)}
+          className=" text-slate-800 w-[300px] my-2 p-1 rounded-lg"/>
+
+{/* Confirm Password */}
           <label>Confirm Password:</label>
-          <input type="password" ref={conpassRef} required  className=" text-slate-800 w-[300px] my-2 p-1 rounded-lg"/>
-          <input type="submit" onClick={handleSubmit} value="Register" className="bg-red-600 text-slate-100 w-[100px] my-2 p-1 rounded-lg"/>
+          <input 
+          type="password" 
+          ref={conpassRef} 
+          value={confirmpasswaord} 
+          required 
+          onChange={(e)=>setConfirmPassword(e.target.value)}
+          className=" text-slate-800 w-[300px] my-2 p-1 rounded-lg"/>
+
+{/* Submit Button */}
+          <input 
+          type="submit" 
+          value="Register" 
+          className="bg-red-600 text-slate-100 w-[100px] my-2 p-1 rounded-lg"/>
         </form>
         <div className='flex flex-row'>
         <p className='py-1'>Already have an account</p>
