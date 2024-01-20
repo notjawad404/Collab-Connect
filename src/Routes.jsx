@@ -2,10 +2,10 @@
 import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
 
 import App from './App.jsx';
-import Home from './components/home';
+import Home from './components/Public/home.jsx';
 import LoginPage from './components/authPages/LoginPage';
 import RegisterPage from './components/authPages/Register';
-import UserProfile from './components/userProfile.jsx';
+import UserProfile from './components/UserManagment/userProfile.jsx';
 import ProtectedRoute from './components/authPages/ProtectedRoute.jsx';
 
 const router = createBrowserRouter(

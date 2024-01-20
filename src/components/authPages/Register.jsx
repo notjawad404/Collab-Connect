@@ -21,15 +21,22 @@ export default function RegisterPage() {
     e.preventDefault();
     try {
 
-      console.log()
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      console.log('login Successfully')
-      alert("Signed in Successfully")
+      if (password === confirmpasswaord) {
 
-      const user = userCredential.user;
-      localStorage.setItem('token', user.accessToken)
-      localStorage.setItem('user', JSON.stringify(user))
-      navigate('/')
+        console.log()
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        
+        alert("Signed in Successfully")
+  
+        const user = userCredential.user;
+        localStorage.setItem('token', user.accessToken)
+        localStorage.setItem('user', JSON.stringify(user))
+        navigate('/')
+        
+      }
+      else{
+        alert("Password and Confirm Password must be same")
+      }
     } catch (error) {
       console.error(error.code + "\n" + error.message)
       alert("Error Cannot Sign in. \nPlease try again")

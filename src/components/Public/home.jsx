@@ -1,17 +1,19 @@
-// import {  getAuth, signOut } from "firebase/auth"
+import {   signOut } from "firebase/auth"
 import {  useNavigate } from "react-router-dom";
+import { useFirebase } from "../context/authContext";
 
 
 export default function Home() {
+  const auth = useFirebase().auth
   const navigate = useNavigate()
   const logout = async () =>{
     try {
-      // await signOut(getAuth);
+      await signOut(auth);
       localStorage.removeItem('token')
       localStorage.removeItem('user')
       navigate('/login')
     } catch (error) {
-      console.error(error.code + "\n" + error.message)
+      alert("Error cannot logout")
     }
 
     

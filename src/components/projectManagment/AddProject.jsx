@@ -1,6 +1,6 @@
 
 
-export default function Projectspage() {
+export default function AddProjectspage() {
   return (
     <div>
       Projectspage

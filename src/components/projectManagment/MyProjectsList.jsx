@@ -1,6 +1,6 @@
 
 
-export default function ProjectsList() {
+export default function MyProjectsList() {
   return (
     <div>
       ProjectsList
