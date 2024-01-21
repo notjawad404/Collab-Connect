@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext } from 'react';
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
@@ -27,7 +28,6 @@ export const FirebaseProvider = ({ children }) => (
   </FirebaseContext.Provider>
 );
 
-// eslint-disable-next-line react-refresh/only-export-components
 export const useFirebase = () => {
   const context = useContext(FirebaseContext);
   if (!context) {
@@ -35,6 +35,8 @@ export const useFirebase = () => {
   }
   return context;
 };
+
+// export const db = .firestore();
 
 FirebaseProvider.propTypes = {
   children: PropTypes.node.isRequired,
