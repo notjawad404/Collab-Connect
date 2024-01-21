@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { db } from '../../firebase';
-// import { doc, collection, addDoc, updateDoc, deleteDoc, getDocs } from 'firebase/firestore';
 import { collection, addDoc } from 'firebase/firestore';
-import { Navigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function AddProjectspage() {
   const [pName, setPName] = useState('')
@@ -11,17 +10,13 @@ export default function AddProjectspage() {
   const [repoLink, setRepoLink] = useState('')
   const [requirements, setRequirement] = useState('')
   const [PaidProject, setPaidProject] = useState('')
-  // const [ setProject] = useState({})
-  const documentToken = localStorage.getItem('token')
-  // Creating a reference to the projects collection
-  const dbref = collection(db, 'projects')
 
-  //storing data in firestore
+  const documentToken = localStorage.getItem('token')
+  const dbref = collection(db, 'projects')
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // const docRef = await addDoc(dbref, project)
       const addData = await addDoc(dbref, {ProjectName: pName, ProjectDescription: pDescription, TechStack: techStack, RepoLink: repoLink, Requirements: requirements, PaidProject: PaidProject, UserToken: documentToken,})
       if(addData) {
         alert("Project Added Successfully")
@@ -29,41 +24,19 @@ export default function AddProjectspage() {
       else{
         alert("Error adding project. \nPlease try again")
       }
-      // console.log("Document written with ID: ", docRef.id);
     } catch (error) {
       console.error("Error adding document: ", error);
     }
   }
 
 
-  // const handleSubmit = async (e) => {
-  //   console.log(db);
-  //   e.preventDefault();
-  //   try {
-  //     const project = {pName, pDescription, techStack, repoLink}
-  //     setProject(project)
-  //     console.log(project)
 
-  //     alert("Project Added Successfully")
-
-  //   } catch (error) {
-  //     alert("Error adding project. \nPlease try again")
-  //   }
-  // }
-
-  const NavigateHome = () => {
-    Navigate('/')
-
-  }
-  const NavigateMyProjects = () => {
-    Navigate('/myprojects')
-  }
   return (
     <div className="bg-slate-800 h-screen text-white">
     <div className='flex justify-between pt-2 px-4'>
-      <button className='rounded-lg p-2 bg-green-600' onClick={NavigateHome}>Home</button>
+      <Link className='rounded-lg p-2 bg-green-600' to='/'>Home</Link>
       <h1>AddProject</h1>
-      <button className='rounded-lg p-2 bg-green-600' onClick={NavigateMyProjects}>My Project</button>
+      <Link className='rounded-lg p-2 bg-green-600' to='/myprojects'>My Project</Link>
     </div>
     <div className="flex justify-center items-center">
       <form className="flex flex-col" onSubmit={handleSubmit}>

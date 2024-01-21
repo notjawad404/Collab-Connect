@@ -1,6 +1,7 @@
 import {   signOut } from "firebase/auth"
 import {  useNavigate } from "react-router-dom";
 import { useFirebase } from "../context/authContext";
+import Navbar from "../Navbar/Navbar";
 
 
 export default function Home() {
@@ -19,7 +20,8 @@ export default function Home() {
     
   }
   return (
-    <div>
+    <div className="bg-slate-800 h-screen text-slate-50">
+      <Navbar/>
         <h1>Welcone to OC Hub</h1>
         <button onClick={logout}>Logout</button>
     </div>
