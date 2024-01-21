@@ -12,6 +12,7 @@ import MyProjectsList from '../projectManagment/MyProjectsList.jsx';
 import CreateProfile from '../UserManagment/CreateProfile.jsx';
 import RegisterRoute from './RegisterRoute.jsx';
 import AllProjects from '../Public/AllProjects.jsx';
+import ProjectDetails from '../Public/projectDetails.jsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -20,6 +21,7 @@ const router = createBrowserRouter(
       <Route path='/login' element={<LoginPage />} />
       <Route path='/register' element={<RegisterPage />} />
       <Route path='/allprojects' element={<AllProjects/>}/>
+      <Route path='/projectdetails' element={<ProjectDetails/>}/>
       <Route path='/' element={<ProtectedRoute />}>
         <Route path='/userprofile' element={<UserProfile />} />
         <Route path='/addproject' element={<AddProjectspage/>} />

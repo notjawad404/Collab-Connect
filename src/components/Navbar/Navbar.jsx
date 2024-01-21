@@ -14,7 +14,7 @@ export default function Navbar() {
 
 function PublicNavbar() {
     return (
-        <div className='bg-slate-100 text-slate-800 py-2 px-2'>
+        <div className='bg-orange-400 text-slate-800 py-2 px-2'>
 
             <div className='flex justify-between'>
                 <div>
@@ -36,7 +36,7 @@ function PublicNavbar() {
 
 function PrivateNavbar() {
     return (
-        <div className='bg-slate-100 text-slate-800 py-2 px-2'>
+        <div className='bg-orange-400 text-slate-800 py-2 px-2'>
 
             <div className='flex justify-between'>
                 <div>
