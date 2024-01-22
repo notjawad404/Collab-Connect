@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import {   signOut } from "firebase/auth"
 import {  useNavigate } from "react-router-dom";
 import { useFirebase } from "../context/authContext";
+import logo from '../../assets/Logo/bg1.png'
 
 export default function Navbar() {
     const token = localStorage.getItem('token')
@@ -19,14 +20,15 @@ function PublicNavbar() {
     
 
     return (
-        <div className='bg-orange-400 text-slate-800 py-2 px-2'>
+        <div className='bg-blue-600 text-white py-2 px-2'>
 
             <div className='flex justify-between'>
-                <div>
+                <div className='flex flex-row'>
 
-                    <h1>OC Hub</h1>
+                    <img src={logo} alt='logo' className='h-10 w-10' />
+                    <h1 className='py-1 px-3 text-2xl font-bold'>Collab Connect</h1>
                 </div>
-                <div className='px-4'>
+                <div className='px-4 pt-2'>
                     <Link className='mx-2 py-1' to='/'>Home</Link>
                     <Link className='mx-2 py-1' to='/allprojects'>All Projects</Link>
                     <Link className='mx-2 py-1' to='/login'>Login</Link>
@@ -54,13 +56,14 @@ function PrivateNavbar() {
   }
 
     return (
-        <div className='bg-orange-400 text-slate-800 py-2 px-2'>
+        <div className='bg-blue-600 text-slate-100 py-2 px-2'>
 
             <div className='flex justify-between'>
-                <div>
+            <div className='flex flex-row'>
 
-                    <h1>OC Hub</h1>
-                </div>
+<img src={logo} alt='logo' className='h-10 w-10' />
+<h1 className='py-1 px-3 text-2xl font-bold'>Collab Connect</h1>
+</div>
                 <div className='px-4'>
 
                     <Link className='mx-2 py-1' to='/'>Home</Link>
