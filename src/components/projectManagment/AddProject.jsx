@@ -1,34 +1,69 @@
 import { useState } from 'react';
 import { db } from '../../firebase';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, doc, getDoc } from 'firebase/firestore';
 import { Link } from 'react-router-dom';
 
-export default function AddProjectspage() {
-  const [pName, setPName] = useState('')
-  const [pDescription, setPDescription] = useState('')
-  const [techStack, setTechStack] = useState('')
-  const [repoLink, setRepoLink] = useState('')
-  const [requirements, setRequirement] = useState('')
-  const [PaidProject, setPaidProject] = useState('')
 
-  const documentToken = localStorage.getItem('token')
-  const dbref = collection(db, 'projects')
+export default function AddProjectspage() {
+  const [pName, setPName] = useState('');
+  const [pDescription, setPDescription] = useState('');
+  const [techStack, setTechStack] = useState('');
+  const [repoLink, setRepoLink] = useState('');
+  const [requirements, setRequirement] = useState('');
+  const [PaidProject, setPaidProject] = useState('');
+
+  const userId = localStorage.getItem('userId');
+  const dbref = collection(db, 'projects');
+
+  console.log(userId)
+
+  // Function to generate a   unique projectID
+  const generateProjectID = async () => {
+    let projectId;
+    let isUnique = false;
+
+    // Keep incrementing the projectID until it is unique
+    while (!isUnique) {
+      projectId = userId + '-' + Math.floor(Math.random() * 1000); // You can use a more robust method for generating IDs
+      const docSnapshot = await getDoc(doc(dbref, projectId));
+
+      if (!docSnapshot.exists()) {
+        // If the document with this ID does not exist, it is unique
+        isUnique = true;
+      }
+    }
+
+    return projectId;
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
-      const addData = await addDoc(dbref, {ProjectName: pName, ProjectDescription: pDescription, TechStack: techStack, RepoLink: repoLink, Requirements: requirements, PaidProject: PaidProject, UserToken: documentToken,})
-      if(addData) {
-        alert("Project Added Successfully")
-      }
-      else{
-        alert("Error adding project. \nPlease try again")
+      const projectID = await generateProjectID();
+
+      const addData = await addDoc(dbref, {
+        ProjectID: projectID,
+        ProjectName: pName,
+        ProjectDescription: pDescription,
+        TechStack: techStack,
+        RepoLink: repoLink,
+        Requirements: requirements,
+        PaidProject: PaidProject,
+        UserToken: userId,
+      });
+
+      if (addData) {
+        alert('Project Added Successfully');
+      } else {
+        alert('Error adding project. \nPlease try again');
       }
     } catch (error) {
-      console.error("Error adding document: ", error);
+      console.error('Error adding document: ', error);
     }
-  }
+  };
 
+  // ... (existing return statement)
 
 
   return (

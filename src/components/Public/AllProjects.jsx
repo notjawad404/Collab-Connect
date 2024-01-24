@@ -15,7 +15,7 @@ export default function AllProjects() {
       const querySnapshot = await getDocs(dbref);
       const fetchdata = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
       setFetchData(fetchdata);
-      console.log(fetchdata);
+      // console.log(fetchdata);
 
     } catch (error) {
       console.log(error.message);
@@ -42,7 +42,9 @@ export default function AllProjects() {
     );
   };
 
-  const DetailPage = (projectId) =>{
+  const DetailPage = (project) =>{
+    const projectId = project
+    console.log(projectId)
     navigate(`/projectDetails/${projectId}`);
   }
   
@@ -68,7 +70,7 @@ export default function AllProjects() {
               </div>
             </div>
             <div className="flex justify-center">
-              <button className="bg-red-400 p-1" onClick={()=>DetailPage(project.id)}>Project Details</button>
+              <button className="bg-red-400 p-1" onClick={()=>DetailPage(project.ProjectID)}>Project Details</button>
             </div>
           </div>
         ))}

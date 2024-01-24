@@ -6,7 +6,7 @@ import { db } from "../../firebase";
 export default function MyProjectsList() {
   const [fetchData, setFetchData] = useState([]);
 
-  const userID = localStorage.getItem('token');
+  const userID = localStorage.getItem('userId');
   // const dbref = collection(db, 'projects');
 
   const fetch = async () => {

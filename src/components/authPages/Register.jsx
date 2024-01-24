@@ -31,6 +31,7 @@ export default function RegisterPage() {
         const user = userCredential.user;
         localStorage.setItem('token', user.accessToken)
         localStorage.setItem('user', JSON.stringify(user))
+        localStorage.setItem('userId', user.uid)
         localStorage.setItem('newUser', true)
         navigate('/createprofile')
         

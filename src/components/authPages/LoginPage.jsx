@@ -27,7 +27,12 @@ export default function LoginPage() {
 
       const user = userCredential.user;
       localStorage.setItem('token', user.accessToken)
-      localStorage.setItem('user', JSON.stringify(user))
+      localStorage.setItem('user', user)
+      localStorage.setItem('userId', user.uid)
+
+      const userID = localStorage.getItem('userId');
+      console.log(userID)
+
       navigate('/')
     } catch (error) {
       console.error(error.code + "\n" + error.message)
