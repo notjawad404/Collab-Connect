@@ -14,7 +14,6 @@ export default function MyProjectsList() {
       const querySnapshot = await getDocs(query(collection(db, 'projects'), where('UserToken', '==', userID)));
       const fetchdata = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
       setFetchData(fetchdata);
-      console.log(fetchdata);
     } catch (error) {
       console.log(error.message);
     }
@@ -23,7 +22,7 @@ export default function MyProjectsList() {
 
   useEffect(() => {
     fetch();
-  }, []);
+  });
 
   const repoLink = (project) => {
     window.open(project.RepoLink, '_blank');

@@ -2,11 +2,13 @@ import { useState, useEffect } from "react";
 import Navbar from "../Navbar/Navbar";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase";
+import { useNavigate } from "react-router-dom";
 
 export default function AllProjects() {
   const [fetchData, setFetchData] = useState([]);
 
   const dbref = collection(db, 'projects');
+  const navigate = useNavigate();
 
   const fetch = async () => {
     try {
@@ -14,6 +16,7 @@ export default function AllProjects() {
       const fetchdata = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
       setFetchData(fetchdata);
       console.log(fetchdata);
+
     } catch (error) {
       console.log(error.message);
     }
@@ -21,7 +24,7 @@ export default function AllProjects() {
 
   useEffect(() => {
     fetch();
-  }, []);
+  });
 
   const repoLink = (project) => {
     window.open(project.RepoLink, '_blank');
@@ -38,6 +41,10 @@ export default function AllProjects() {
       </div>
     );
   };
+
+  const DetailPage = (projectId) =>{
+    navigate(`/projectDetails/${projectId}`);
+  }
   
 
   return (
@@ -61,7 +68,7 @@ export default function AllProjects() {
               </div>
             </div>
             <div className="flex justify-center">
-              <button className="bg-red-400 p-1">Project Details</button>
+              <button className="bg-red-400 p-1" onClick={()=>DetailPage(project.id)}>Project Details</button>
             </div>
           </div>
         ))}
