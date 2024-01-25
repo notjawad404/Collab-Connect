@@ -9,24 +9,10 @@ export default function ProjectDetails() {
   const [fetchData, setFetchData] = useState([]);
   const location = useLocation();
 
-  // const userID = localStorage.getItem('token');
   const dbref = collection(db, 'projects');
-
-
+  
   const projectId = location.pathname.split('/').pop();
   console.log(projectId);
-
-  // const fetch = async () => {
-  //   try {
-  //     // const querySnapshot = await getDocs(query(collection(db, 'projects'), where('pid', '==', projectId)));
-  //     // const querySnapshot = await getDocs(dbref);
-  //     const querySnapshot = await getDocs(query(dbref, where('id', '==', `${projectId}`)));
-  //     const fetchdata = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-  //     setFetchData(fetchdata);
-  //   } catch (error) {
-  //     console.log(error.message);
-  //   }
-  // };
 
   const fetch = async () => {
     try {

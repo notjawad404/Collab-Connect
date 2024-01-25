@@ -17,18 +17,15 @@ export default function AddProjectspage() {
 
   console.log(userId)
 
-  // Function to generate a   unique projectID
   const generateProjectID = async () => {
     let projectId;
     let isUnique = false;
 
-    // Keep incrementing the projectID until it is unique
     while (!isUnique) {
-      projectId = userId + '-' + Math.floor(Math.random() * 1000); // You can use a more robust method for generating IDs
+      projectId = userId + '-' + Math.floor(Math.random() * 1000);
       const docSnapshot = await getDoc(doc(dbref, projectId));
 
       if (!docSnapshot.exists()) {
-        // If the document with this ID does not exist, it is unique
         isUnique = true;
       }
     }
@@ -62,9 +59,6 @@ export default function AddProjectspage() {
       console.error('Error adding document: ', error);
     }
   };
-
-  // ... (existing return statement)
-
 
   return (
     <div className="bg-slate-800 h-screen text-white">
