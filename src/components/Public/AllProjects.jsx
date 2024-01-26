@@ -15,8 +15,7 @@ export default function AllProjects() {
       const querySnapshot = await getDocs(dbref);
       const fetchdata = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
       setFetchData(fetchdata);
-      // console.log(fetchdata);
-
+      console.log(fetchdata);
     } catch (error) {
       console.log(error.message);
     }
