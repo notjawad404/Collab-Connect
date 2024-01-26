@@ -10,12 +10,14 @@ export default function AddProjectspage() {
   const [techStack, setTechStack] = useState('');
   const [repoLink, setRepoLink] = useState('');
   const [requirements, setRequirement] = useState('');
-  const [PaidProject, setPaidProject] = useState('');
+  // const [PaidProject, setPaidProject] = useState('');
+  const [paymentType, setPaymentType] = useState('');
 
   const userId = localStorage.getItem('userId');
   const dbref = collection(db, 'projects');
 
   console.log(userId)
+  console.log("----------------------")
 
   const generateProjectID = async () => {
     let projectId;
@@ -29,13 +31,12 @@ export default function AddProjectspage() {
         isUnique = true;
       }
     }
-
+    console.log("ProjectID = "+projectId);
     return projectId;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const projectID = await generateProjectID();
 
@@ -46,7 +47,7 @@ export default function AddProjectspage() {
         TechStack: techStack,
         RepoLink: repoLink,
         Requirements: requirements,
-        PaidProject: PaidProject,
+        PaidProject: paymentType,
         UserToken: userId,
       });
 
@@ -80,9 +81,37 @@ export default function AddProjectspage() {
         <label className='py-1'>Individual Resource Requirements</label>
         <textarea className='w-[400px] p-1 rounded-lg text-slate-800' rows={3} required value={requirements} onChange={(e) => setRequirement(e.target.value)} type="text" />
         
-        <label className='py-1'>Paid/UnPaid Project </label>
-        <input className='w-[400px] p-1 rounded-lg text-slate-800' type='text' required value={PaidProject} onChange={(e) => setPaidProject(e.target.value)}/>        
-        <button type="submit" onClick={handleSubmit} className='bg-red-600 hover:bg-slate-100 hover:text-slate-800 mx-auto w-[200px] mt-2 py-1 rounded-full'>Submit</button>
+        <label className='py-1'>Paid/UnPaid Project</label>
+<div className="flex items-center space-x-4">
+  <label className="flex items-center">
+    <input
+      type="radio"
+      id="paid"
+      name="paymentType"
+      value="Paid"
+      checked={paymentType === 'Paid'}
+      onChange={(e) => setPaymentType(e.target.value)}
+      className="text-slate-800"
+    />
+    <span className="ml-2">Paid</span>
+  </label>
+
+  <label className="flex items-center">
+    <input
+      type="radio"
+      id="unpaid"
+      name="paymentType"
+      value="Unpaid"
+      checked={paymentType === 'Unpaid'}
+      onChange={(e) => setPaymentType(e.target.value)}
+      className="text-slate-800"
+    />
+    <span className="ml-2">Unpaid</span>
+  </label>
+</div>
+
+
+                <button type="submit" onClick={handleSubmit} className='bg-red-600 hover:bg-slate-100 hover:text-slate-800 mx-auto w-[200px] mt-2 py-1 rounded-full'>Submit</button>
       </form>
       </div>
     </div>
