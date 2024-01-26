@@ -41,7 +41,6 @@ export default function ProjectDetails() {
   return (
 <div className="bg-slate-800 h-screen overflow-y-auto">
       <Navbar/>
-      
       {
         fetchData.map((project, index) => (
           <div key={index} className=" bg-slate-600 text-slate-50 font-bold text-lg w-4/5 mx-auto mt-10 py-2">

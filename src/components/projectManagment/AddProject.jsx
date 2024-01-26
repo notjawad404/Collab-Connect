@@ -81,7 +81,8 @@ export default function AddProjectspage() {
         <textarea className='w-[400px] p-1 rounded-lg text-slate-800' rows={3} required value={requirements} onChange={(e) => setRequirement(e.target.value)} type="text" />
         
         <label className='py-1'>Paid/UnPaid Project </label>
-        <input className='w-[400px] p-1 rounded-lg text-slate-800' type='text' required value={PaidProject} onChange={(e) => setPaidProject(e.target.value)}/>        <button type="submit" onClick={handleSubmit} className='bg-red-600 hover:bg-slate-100 hover:text-slate-800 mx-auto w-[200px] mt-2 py-1 rounded-full'>Submit</button>
+        <input className='w-[400px] p-1 rounded-lg text-slate-800' type='text' required value={PaidProject} onChange={(e) => setPaidProject(e.target.value)}/>        
+        <button type="submit" onClick={handleSubmit} className='bg-red-600 hover:bg-slate-100 hover:text-slate-800 mx-auto w-[200px] mt-2 py-1 rounded-full'>Submit</button>
       </form>
       </div>
     </div>
