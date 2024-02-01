@@ -1,3 +1,2 @@
-# Open Collab Hub (OC Hub)
-A platform where Users can collaborate on projects.
-Users can upload the projects for interested individuals to collaborate on those projects.
+# Collab Connect
+Collab Connect is a dynamic online platform where diverse individuals converge to collaborate on projects, breaking down barriers and fostering an inclusive community. With detailed project profiles, advanced search, dedicated collaboration spaces, and networking opportunities, Collab Connect simplifies collaboration. It encourages a culture of excellence through feedback and ratings, empowering users to turn ideas into reality. Join Collab Connect—an innovative space where passion meets talent, and collaborations flourish.
