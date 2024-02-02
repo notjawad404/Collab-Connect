@@ -2,6 +2,7 @@
 import About from "../Home/About";
 import Banner from "../Home/Banner";
 import Services from "../Home/Services";
+import Footer from "../Navbar/Footer";
 import Navbar from "../Navbar/Navbar";
 
 export default function Home() {
@@ -12,7 +13,7 @@ export default function Home() {
       <Banner/>
       <About/>
       <Services/>
-      
+      <Footer/>
     </div>
   )
 }
