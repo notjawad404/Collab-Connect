@@ -10,14 +10,12 @@ export default function AddProjectspage() {
   const [techStack, setTechStack] = useState('');
   const [repoLink, setRepoLink] = useState('');
   const [requirements, setRequirement] = useState('');
-  // const [PaidProject, setPaidProject] = useState('');
+  const [loading, setLoading] = useState(false);
   const [paymentType, setPaymentType] = useState('');
 
   const userId = localStorage.getItem('userId');
   const dbref = collection(db, 'projects');
 
-  console.log(userId)
-  console.log("----------------------")
 
   const generateProjectID = async () => {
     let projectId;
@@ -31,13 +29,14 @@ export default function AddProjectspage() {
         isUnique = true;
       }
     }
-    console.log("ProjectID = "+projectId);
     return projectId;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true);
+
       const projectID = await generateProjectID();
 
       const addData = await addDoc(dbref, {
@@ -53,12 +52,16 @@ export default function AddProjectspage() {
 
       if (addData) {
         alert('Project Added Successfully');
+        window.location.reload();
       } else {
         alert('Error adding project. \nPlease try again');
       }
     } catch (error) {
       console.error('Error adding document: ', error);
+    } finally{
+      setLoading(false);
     }
+
   };
 
   return (
@@ -69,7 +72,7 @@ export default function AddProjectspage() {
       <Link className='rounded-lg p-2 bg-green-600' to='/myprojects'>My Project</Link>
     </div>
     <div className="flex justify-center items-center">
-      <form className="flex flex-col" onSubmit={handleSubmit}>
+      <form className="flex flex-col">
         <label className="py-1">Project Name</label>
         <input className="w-[400px] p-1 rounded-lg text-slate-800" required value={pName} onChange={(e) => setPName(e.target.value)} type="text"/>
         <label className="py-1">Tech Stack Used <span className='text-xs'>{'(Add Multiple seperated by comma ,)'}</span></label>
@@ -109,9 +112,14 @@ export default function AddProjectspage() {
     <span className="ml-2">Unpaid</span>
   </label>
 </div>
-
-
-                <button type="submit" onClick={handleSubmit} className='bg-red-600 hover:bg-slate-100 hover:text-slate-800 mx-auto w-[200px] mt-2 py-1 rounded-full'>Submit</button>
+          <button
+            type="submit"
+            onClick={handleSubmit}
+            className='bg-red-600 hover:bg-slate-100 hover:text-slate-800 mx-auto w-[200px] mt-2 py-1 rounded-full'
+            disabled={loading}
+          >
+            {loading ? 'Loading...' : 'Submit'}
+          </button>
       </form>
       </div>
     </div>
