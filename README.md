@@ -17,9 +17,18 @@ Collab Connect is a vibrant online platform designed to foster collaboration and
 ## Getting Started
 
 1. **Clone the Repository:**
+   - This project is built on React VITE
    ```bash
    git clone https://github.com/yourusername/CollabConnect.git
+3. **Install Dependencies:**
 
+   ```bash
+   cd CollabConnect
+   npm install 
+
+4. **Run the Application**
+   ```bash
+   npm run dev
 
 ## Contributing
 
