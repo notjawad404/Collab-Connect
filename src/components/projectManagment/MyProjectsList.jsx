@@ -2,11 +2,13 @@ import { useState, useEffect } from "react";
 import Navbar from "../Navbar/Navbar";
 import { query, where, collection, getDocs, deleteDoc, doc } from "firebase/firestore";
 import { db } from "../../firebase";
+import { useNavigate } from "react-router-dom";
 
 export default function MyProjectsList() {
   const [fetchData, setFetchData] = useState([]);
 
   const userID = localStorage.getItem('userId');
+  const navigate = useNavigate();
   // const dbref = collection(db, 'projects');
 
   const fetch = async () => {
@@ -17,6 +19,10 @@ export default function MyProjectsList() {
     } catch (error) {
       console.log(error.message);
     }
+  };
+
+  const updateProject = (id) => {
+    navigate(`/update/${id}`);
   };
   
   const deleteProject = async (id) => {
@@ -76,7 +82,7 @@ export default function MyProjectsList() {
             <div>
             </div>
               <button className="bg-red-400 p-1 mx-1 rounded-lg">Project Details</button>
-              <button className="bg-red-400 p-1 mx-1 rounded-lg">Update</button>
+              <button className="bg-red-400 p-1 mx-1 rounded-lg" onClick={()=>updateProject(project.id)}>Update</button>
               <button className="bg-red-400 p-1 mx-1 rounded-lg" onClick={()=>deleteProject(project.id)}>Delete</button>
 
             </div>
