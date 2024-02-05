@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Navbar from "../Navbar/Navbar";
-import { query, where, collection, getDocs } from "firebase/firestore";
+import { query, where, collection, getDocs, deleteDoc, doc } from "firebase/firestore";
 import { db } from "../../firebase";
 
 export default function MyProjectsList() {
@@ -19,6 +19,15 @@ export default function MyProjectsList() {
     }
   };
   
+  const deleteProject = async (id) => {
+    try{
+      await deleteDoc(doc(db, 'projects', id));
+      fetch();
+    }
+    catch (error) {
+      alert("Error deleting document: ", error);
+    }
+  };
 
   useEffect(() => {
     fetch();
@@ -68,7 +77,7 @@ export default function MyProjectsList() {
             </div>
               <button className="bg-red-400 p-1 mx-1 rounded-lg">Project Details</button>
               <button className="bg-red-400 p-1 mx-1 rounded-lg">Update</button>
-              <button className="bg-red-400 p-1 mx-1 rounded-lg">Delete</button>
+              <button className="bg-red-400 p-1 mx-1 rounded-lg" onClick={()=>deleteProject(project.id)}>Delete</button>
 
             </div>
           </div>

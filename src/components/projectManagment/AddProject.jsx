@@ -57,7 +57,7 @@ export default function AddProjectspage() {
         alert('Error adding project. \nPlease try again');
       }
     } catch (error) {
-      console.error('Error adding document: ', error);
+      alert('Error adding document: ', error);
     } finally{
       setLoading(false);
     }
