@@ -10,9 +10,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "firebase": "^10.7.1",
+    "@reduxjs/toolkit": "^2.12.0",
+    "@stripe/react-stripe-js": "^6.8.0",
+    "@stripe/stripe-js": "^9.12.1",
+    "@supabase/supabase-js": "^2.112.0",
+    "lucide-react": "^1.28.0",
+    "peerjs": "^1.5.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-redux": "^9.3.0",
     "react-router-dom": "^6.21.3"
   },
   "devDependencies": {

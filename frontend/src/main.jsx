@@ -1,14 +1,14 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import './index.css'
-import RouterApp from './components/routes/Routes.jsx'
-import { FirebaseProvider } from './components/context/authContext.jsx'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
+import { store } from './store';
+import RouterApp from './components/routes/Routes.jsx';
+import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-  <FirebaseProvider>
-    <RouterApp/>
-
-  </FirebaseProvider>
-  </React.StrictMode>,
-)
+    <Provider store={store}>
+      <RouterApp />
+    </Provider>
+  </React.StrictMode>
+);
